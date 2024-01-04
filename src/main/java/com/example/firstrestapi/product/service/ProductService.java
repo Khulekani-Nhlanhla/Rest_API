@@ -8,5 +8,15 @@ import com.example.firstrestapi.product.support.ProductMapper;
 import org.springframework.stereotype.Service;
 
 public class ProductService {
-
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
+    public ProductService(ProductRepository productRepository,ProductMapper productMapper){
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
+    }
+    // This is meant for the creation of products in the database
+    public ProductResponse create(ProductRequest productRequest){
+        Product product = productRepository.save(productMapper.toProduct(productRequest));
+        return productMapper.toProductResponse(product);
+    }
 }
