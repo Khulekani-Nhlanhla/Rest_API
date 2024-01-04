@@ -6,7 +6,7 @@ import com.example.firstrestapi.product.domain.Product;
 import com.example.firstrestapi.product.repository.ProductRepository;
 import com.example.firstrestapi.product.support.ProductMapper;
 import org.springframework.stereotype.Service;
-
+@Service
 public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
