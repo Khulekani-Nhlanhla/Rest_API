@@ -1,11 +1,10 @@
 package com.example.firstrestapi.product.repository;
 
+import com.example.firstrestapi.product.api.response.ProductResponse;
 import com.example.firstrestapi.product.domain.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class ProductRepository {
@@ -30,5 +29,8 @@ public class ProductRepository {
 
     public Optional<Product> findById(Long id){
         return Optional.ofNullable(map.get(id));
+    }
+    public List<Product> findAll(){
+        return new ArrayList<>(map.values());
     }
 }

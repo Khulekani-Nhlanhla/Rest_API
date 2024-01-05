@@ -8,6 +8,10 @@ import com.example.firstrestapi.product.repository.ProductRepository;
 import com.example.firstrestapi.product.support.ProductExceptionSupplier;
 import com.example.firstrestapi.product.support.ProductMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -32,5 +36,8 @@ public class ProductService {
                 ProductExceptionSupplier.productNotFound(id));
         productRepository.save(productMapper.toProduct(product, updateProductRequest));
         return productMapper.toProductResponse(product);
+    }
+    public List<ProductResponse> findAll(){
+        return productRepository.findAll().stream().map(productMapper::toProductResponse).collect(Collectors.toList());
     }
 }

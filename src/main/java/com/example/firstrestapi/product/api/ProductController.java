@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // This is responsible for sending and handling http requests
 @RestController
 @RequestMapping("/api/v1/products")
@@ -31,8 +33,14 @@ public class ProductController {
         ProductResponse productResponse = productService.find(id);
         return ResponseEntity.status(HttpStatus.OK).body(productResponse);
     }
+    @GetMapping
+    @Operation(summary = "Find all the products")
+    public ResponseEntity<List<ProductResponse>> findAll(){
+        List<ProductResponse> productResponses = productService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(productResponses);
+    }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Update product")
     public ResponseEntity<ProductResponse> update(@PathVariable Long id, @RequestBody UpdateProductRequest updateProductRequest){
         ProductResponse productResponse = productService.update(id, updateProductRequest);
