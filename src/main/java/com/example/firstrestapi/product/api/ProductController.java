@@ -1,6 +1,7 @@
 package com.example.firstrestapi.product.api;
 
 import com.example.firstrestapi.product.api.request.ProductRequest;
+import com.example.firstrestapi.product.api.request.UpdateProductRequest;
 import com.example.firstrestapi.product.api.response.ProductResponse;
 import com.example.firstrestapi.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,6 +1,7 @@
 package com.example.firstrestapi.product.service;
 
 import com.example.firstrestapi.product.api.request.ProductRequest;
+import com.example.firstrestapi.product.api.request.UpdateProductRequest;
 import com.example.firstrestapi.product.api.response.ProductResponse;
 import com.example.firstrestapi.product.domain.Product;
 import com.example.firstrestapi.product.repository.ProductRepository;
@@ -23,6 +24,13 @@ public class ProductService {
     // This the find method linked to the response controller
     public ProductResponse find(Long id){
         Product product = productRepository.findById(id).orElseThrow(ProductExceptionSupplier.productNotFound(id));
+        return productMapper.toProductResponse(product);
+    }
+
+    public ProductResponse update(Long id, UpdateProductRequest updateProductRequest) {
+        Product product = productRepository.findById(id).orElseThrow(
+                ProductExceptionSupplier.productNotFound(id));
+        productRepository.save(productMapper.toProduct(product, updateProductRequest));
         return productMapper.toProductResponse(product);
     }
 }
