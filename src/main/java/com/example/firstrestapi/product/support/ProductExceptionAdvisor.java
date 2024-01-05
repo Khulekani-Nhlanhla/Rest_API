@@ -1,6 +1,8 @@
 package com.example.firstrestapi.product.support;
 
 import com.example.firstrestapi.product.support.exception.ProductNotFoundException;
+import com.example.firstrestapi.shared.api.response.ErrorMessageResponse;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
