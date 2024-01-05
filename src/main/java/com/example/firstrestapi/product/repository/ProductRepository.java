@@ -18,9 +18,13 @@ public class ProductRepository {
     }
     // This is a method meant to set the product Id to the index of the item in the Hashmap.
     private Product setId(Product entity){
-        entity.setId(counter);
-        map.put(counter,entity);
-        counter++;
+        if (entity.getId() != null){
+            map.put(entity.getId(),entity);
+        }else{
+            entity.setId(counter);
+            map.put(counter,entity);
+            counter++;
+        }
         return entity;
     }
 
