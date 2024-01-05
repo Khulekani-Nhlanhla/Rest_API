@@ -5,6 +5,7 @@ import com.example.firstrestapi.product.api.request.UpdateProductRequest;
 import com.example.firstrestapi.product.api.response.ProductResponse;
 import com.example.firstrestapi.product.domain.Product;
 import com.example.firstrestapi.product.repository.ProductRepository;
+import com.example.firstrestapi.product.support.ProductExceptionAdvisor;
 import com.example.firstrestapi.product.support.ProductExceptionSupplier;
 import com.example.firstrestapi.product.support.ProductMapper;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,9 @@ public class ProductService {
     }
     public List<ProductResponse> findAll(){
         return productRepository.findAll().stream().map(productMapper::toProductResponse).collect(Collectors.toList());
+    }
+    public void delete(Long id){
+        Product product = productRepository.findById(id).orElseThrow(ProductExceptionSupplier.productNotFound(id));
+        productRepository.deleteById(product.getId());
     }
 }
