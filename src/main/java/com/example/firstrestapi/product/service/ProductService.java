@@ -4,6 +4,7 @@ import com.example.firstrestapi.product.api.request.ProductRequest;
 import com.example.firstrestapi.product.api.response.ProductResponse;
 import com.example.firstrestapi.product.domain.Product;
 import com.example.firstrestapi.product.repository.ProductRepository;
+import com.example.firstrestapi.product.support.ProductExceptionSupplier;
 import com.example.firstrestapi.product.support.ProductMapper;
 import org.springframework.stereotype.Service;
 @Service
@@ -21,7 +22,7 @@ public class ProductService {
     }
     // This the find method linked to the response controller
     public ProductResponse find(Long id){
-        Product product = productRepository.findById(id).orElseThrow(RuntimeException::new);
+        Product product = productRepository.findById(id).orElseThrow(ProductExceptionSupplier.productNotFound(id));
         return productMapper.toProductResponse(product);
     }
 }
