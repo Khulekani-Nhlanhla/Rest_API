@@ -12,6 +12,10 @@ public class Product {
     private Long id;
 
     private String name;
+
+    public Product(){
+
+    }
 //    This a method meant to assign the name of the product
     public Product(String name){this.name = name;}
 
